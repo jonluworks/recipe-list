@@ -1,0 +1,62 @@
+<div class="recipe-list">
+
+  <div class="recipe-utils-container">
+
+    <button class="new-recipe-btn"
+            md-fab
+            [@growInOutTrigger]="currentRecipeIndex !== null ? 'small' : 'big'"
+            color="accent"
+            routerLink="new">
+      <md-icon>add</md-icon>
+    </button>
+
+    <div class="filter-options-container">
+
+    </div>
+
+    <form [formGroup]="recipeForm"
+          class="search-bar">
+      <md-input-container>
+        <input mdInput
+               formControlName="filter"
+               [(ngModel)]="filterString"
+               (keyup)="filterRecipes()"
+               placeholder="search">
+        <md-icon *ngIf="filterString"
+                 (click)="clearFilter()">clear</md-icon>
+      </md-input-container>
+    </form>
+  </div>
+
+
+  <div class="recipe-gallery">
+    <div class="recipe-image-card"
+         #recipeCard
+         [ngStyle]="{'display': recipeVisible[i] ? 'flex' : 'none'}"
+         *ngFor="let recipe of recipes; let i = index">
+
+      <div class="card-image"
+           [routerLink]="i"
+           [ngStyle]="{'visibility': i === currentRecipeIndex ? 'hidden' : 'visible'}"
+           appDivImage
+           [src]="recipe.imagePath"
+           [fallback]="'http://i347.photobucket.com/albums/p476/zhl146/image-placeholder_zpsffamsqm7.jpg'">
+
+        <ng-container *ngIf="i !== currentRecipeIndex">
+          <div class="favorite-indicator">
+            <md-icon *ngIf="recipe.favorite" class="fav">favorite</md-icon>
+            <md-icon *ngIf="!recipe.favorite" class="no-fav">favorite_border</md-icon>
+          </div>
+          <div class="floor-fade"></div>
+          <div class="title-overlay">
+            {{recipe.name | titlecase}}
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-padding"></div>
+
+</div>

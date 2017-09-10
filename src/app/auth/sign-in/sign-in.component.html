@@ -1,0 +1,51 @@
+<div class="auth-card auth-login">
+
+    <form [formGroup]="signinForm"
+          novalidate
+          (ngSubmit)="onSubmit()"
+          class="auth-form">
+
+      <div *ngIf="auth.errorMessage">
+        <p>{{auth.errorMessage}}</p>
+      </div>
+
+      <md-input-container>
+        <input mdInput
+               type="email"
+               formControlName="email"
+               placeholder="e-mail">
+
+        <md-error *ngIf="!auth.errorMessage && emailTouched() && !emailValid()">
+          <p>Please enter a vaid e-mail address</p>
+        </md-error>
+
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput
+               type="password"
+               formControlName="password"
+               placeholder="password">
+        <md-hint class="forgot-password" align="end" (click)="goToPasswordReset()"><a>forgot password?</a></md-hint>
+
+        <md-error
+                  *ngIf="!auth.errorMessage && passwordTouched() && !passwordValid()">
+          <p>Your password must be at least 6 characters long</p>
+        </md-error>
+
+      </md-input-container>
+
+      <button md-raised-button
+              color="primary"
+              type="submit">
+        Sign in
+      </button>
+      <button md-raised-button
+              color="accent"
+              type="button"
+              (click)="gotoSignUp()">
+        Don't have an account?
+      </button>
+
+    </form>
+</div>

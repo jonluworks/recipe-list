@@ -1,0 +1,114 @@
+<div class="recipe-detail" #container>
+  <div class="recipe-detail-card" #card>
+    <div class="recipe-image-card">
+
+      <div class="recipe-btn-container">
+        <div (click)="onBack()">
+          <md-icon class="back-btn">arrow_back</md-icon>
+        </div>
+        <div>
+          <md-icon class="edit-btn"
+                   (click)="onEdit()">
+            edit
+          </md-icon>
+        </div>
+      </div>
+
+      <div class="card-image"
+           appDivImage
+           [src]="currentRecipe.imagePath"
+           [fallback]="'http://i347.photobucket.com/albums/p476/zhl146/image-placeholder_zpsffamsqm7.jpg'">
+      </div>
+    </div>
+    <div class="card-detail">
+      <div>
+
+        <div class="fab-container"
+             (click)="onFavorite()"
+             *ngIf="currentRecipe.favorite"
+             [@growInOutTrigger]>
+          <button md-fab
+                  class="card-fav-fab-red">
+            <md-icon>
+              favorite
+            </md-icon>
+          </button>
+        </div>
+        <div class="fab-container"
+             (click)="onFavorite()"
+             *ngIf="!currentRecipe.favorite"
+             [@growInOutTrigger]>
+          <button md-fab
+                  class="card-fav-fab-white">
+            <md-icon>
+              favorite_border
+            </md-icon>
+          </button>
+        </div>
+
+        <div class="card-title">
+          {{currentRecipe.name | titlecase}}
+        </div>
+        <div class="card-subtitle">
+          {{currentRecipe.description}}
+
+          <div class="recipe-time-container">
+
+            <div class="time-block left">
+              <div>Prep</div>
+              <div>{{currentRecipe.prepTime | timePipe}}</div>
+            </div>
+            <div class="time-block center">
+              <div>Cook</div>
+              <div>{{currentRecipe.cookTime | timePipe}}</div>
+            </div>
+            <div class="time-block right">
+              <div>Done in</div>
+              <div>{{currentRecipe.cookTime + currentRecipe.prepTime | timePipe}}</div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <md-tab-group [dynamicHeight]="true">
+          <md-tab [label]="'INGREDIENTS'">
+            <div class="tab-contents">
+              <ul>
+                <li *ngFor="let ingredient of currentRecipe.ingredients; let i = index">
+                  <md-icon class="add-ingredient-btn"
+                           (click)="onAddIngredient(ingredient, i)"
+                           [@buttonClickFeedbackTrigger]="clickedItem === i ? 'true' : 'false' "
+                           md-list-icon>
+                    add_shopping_cart
+                  </md-icon>
+                  {{ingredient}}
+                </li>
+              </ul>
+              <button (click)="onAddAllIngredients()"
+                      md-button
+                      color="primary">
+                ADD ALL TO LIST
+              </button>
+            </div>
+          </md-tab>
+          <md-tab [label]="'DIRECTIONS'">
+            <div class="tab-contents">
+              <ul>
+                <li *ngFor="let step of currentRecipe.steps; let i = index">
+                  {{i+1}}) {{step}}
+                </li>
+              </ul>
+            </div>
+          </md-tab>
+        </md-tab-group>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

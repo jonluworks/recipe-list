@@ -1,0 +1,178 @@
+<form [formGroup]="recipeForm"
+      novalidate
+      class="recipe-detail-container"
+      (ngSubmit)='onSubmit()'>
+
+  <div class="title-card">
+
+    <div class="util-btn-container">
+      <md-icon class="util-btn" [routerLink]="['../']">arrow_back</md-icon>
+      <md-icon class="util-btn"
+               *ngIf="editMode"
+               (click)="onDeleteIntent()">delete</md-icon>
+    </div>
+
+    <md-input-container>
+      <input type="text"
+             placeholder="Recipe Name"
+             mdInput
+             formControlName="recName">
+    </md-input-container>
+
+    <md-input-container>
+        <textarea rows="1"
+                  placeholder="Recipe Image Path"
+                  mdTextareaAutosize
+                  mdAutosizeMinRows="1"
+                  mdInput
+                  #imgPath
+                  [id]="imgPath"
+                  name="textarea"
+                  formControlName="recImgPath">
+      </textarea>
+    </md-input-container>
+
+    <div class="img-preview"
+         appDivImage
+         [src]="imgPath.value"
+         [fallback]="'http://i347.photobucket.com/albums/p476/zhl146/image-placeholder_zpsffamsqm7.jpg'">
+    </div>
+
+    <md-input-container>
+    <textarea rows="1"
+              placeholder="Recipe Description"
+              mdTextareaAutosize
+              mdAutosizeMinRows="1"
+              mdInput
+              name="textarea"
+              formControlName="recDescription">
+      </textarea>
+    </md-input-container>
+
+    <div class="time-card">
+
+      <div class="time-group">
+        <div class="time-label">
+          Preparation time
+        </div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Hours"
+                 class="form-control"
+                 type="text"
+                 formControlName="recPrepHours">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Minutes"
+                 class="form-control"
+                 type="text"
+                 formControlName="recPrepMinutes">
+        </md-input-container>
+      </div>
+
+      <div class="time-group">
+        <div class="time-label">
+          Cook time
+        </div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Hours"
+                 class="form-control"
+                 type="text"
+                 formControlName="recCookHours">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Minutes"
+                 class="form-control"
+                 type="text"
+                 formControlName="recCookMinutes">
+        </md-input-container>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div formArrayName="recIng" class="list-card">
+    <div class="card-title">
+      Ingredients
+    </div>
+
+    <div *ngFor="let ingCtrl of getFormArrayControls('recIng'); let i=index"
+         [formGroupName]="i"
+         [ngClass]="{last: isLastElement(i, 'recIng')}"
+         class="list-item">
+
+      <md-icon *ngIf="isLastElement(i, 'recIng')"
+               (click)="onPlusIng(i)"
+               md-list-icon>
+        add
+      </md-icon>
+
+      <md-input-container [attr.id]="'ing' + i">
+        <textarea rows="1"
+                  mdTextareaAutosize
+                  mdAutosizeMinRows="1"
+                  mdInput
+                  formControlName="text"
+                  (keyup)="autoAddNewItem(i, 'recIng')">
+        </textarea>
+      </md-input-container>
+
+      <md-icon (click)="onDeleteClicked(i, 'recIng')"
+               *ngIf="!isLastElement(i, 'recIng')"
+               md-list-icon>
+        delete
+      </md-icon>
+
+    </div>
+
+
+  </div>
+
+  <div formArrayName="recStep" class="list-card">
+    <div class="card-title">
+      Directions
+    </div>
+
+    <div *ngFor="let stepCtrl of getFormArrayControls('recStep'); let i=index"
+         [formGroupName]="i"
+         [ngClass]="{last: isLastElement(i, 'recStep')}"
+         class="list-item">
+
+      <md-icon *ngIf="isLastElement(i, 'recStep')"
+               (click)="onPlusStep(i)"
+               md-list-icon>
+        add
+      </md-icon>
+
+      <md-input-container [attr.id]="'step' + i">
+        <textarea rows="1"
+                  mdTextareaAutosize
+                  mdAutosizeMinRows="1"
+                  mdInput
+                  formControlName="text"
+                  (keyup)="autoAddNewItem(i, 'recStep')">
+        </textarea>
+      </md-input-container>
+
+      <md-icon (click)="onDeleteClicked(i, 'recStep')"
+               *ngIf="!isLastElement(i, 'recStep')"
+               md-list-icon>
+        delete
+      </md-icon>
+
+    </div>
+
+  </div>
+
+  <button md-fab
+          [@growInOutTrigger]
+          class="submit-btn"
+          color="primary">
+    <md-icon>done</md-icon>
+  </button>
+
+</form>

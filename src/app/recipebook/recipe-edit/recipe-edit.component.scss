@@ -1,0 +1,124 @@
+@import "../../../assets/sass-mixins";
+@import "../../../assets/material-shadows";
+@import "../../../assets/sass-vars";
+
+%card-width {
+  @include breakpoint(1col) {
+    width: 100%;
+  }
+  @include breakpoint(2col) {
+    width: 75%;
+  }
+  @include breakpoint(3col) {
+    width: 50%;
+  }
+  @include breakpoint(4col) {
+    width: 35%;
+  }
+}
+
+%card {
+  @extend %card-width;
+  margin: 0 auto 10px auto;
+  padding: 24px;
+  @extend %md-shadow-3dp;
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: 200;
+  padding: .5em;
+}
+
+.recipe-detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include breakpoint(mobile) {
+    padding: 0;
+  }
+  @include breakpoint(notmobile) {
+    padding: 24px;
+  }
+}
+
+textarea {
+  font-size: 14px;
+  resize: none;
+}
+
+.title-card {
+  @extend %card;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.util-btn-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.util-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.img-preview {
+  align-self: center;
+  width: 320px;
+  @include aspect-ratio(1.77);
+  background-size: cover;
+  background-position: center center;
+  @extend %md-shadow-2dp;
+}
+
+.time-card {
+  display: flex;
+  flex-flow: row;
+  .time-group {
+    width: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    .time-label {
+      width: 100%;
+    }
+    md-input-container {
+      width: 40%;
+    }
+  }
+}
+
+.list-card {
+  @extend %card;
+  display: flex;
+  flex-direction: column;
+}
+
+.last-list-item {
+  opacity: 0.35;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  md-input-container {
+    width: 90%;
+  }
+}
+
+.submit-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  color: white;
+  cursor: pointer;
+}

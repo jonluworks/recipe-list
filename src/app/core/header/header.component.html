@@ -1,0 +1,54 @@
+<ng-container>
+
+  <div class="toolbar">
+    <div class="toolbar-content">
+
+   <span [routerLink]="['recipes']"
+         class="brand">
+      <md-icon md-list-icon>
+        book
+      </md-icon>
+     Recipe Helper
+   </span>
+
+      <span>
+      <button md-button
+              class="nav-btn"
+              *ngFor="let nav of navigation"
+              [routerLink]="nav.route"
+              routerLinkActive="active">
+        {{nav.displayText}}
+      </button>
+
+      <button md-button
+              (click)="onLogOut()"
+              class="sign-out-text"
+              *ngIf="signedIn">
+        Sign out
+      </button>
+
+      <md-icon md-list-icon
+               (click)="onLogOut()"
+               class="sign-out-icon"
+               *ngIf="signedIn">
+        power_settings_new
+      </md-icon>
+    </span>
+
+    </div>
+  </div>
+
+  <div class="mobile-nav"
+       *ngIf="signedIn">
+    <nav md-tab-nav-bar>
+      <a md-tab-link
+         *ngFor="let nav of navigation"
+         [routerLink]="nav.route"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        {{nav.displayText}}
+      </a>
+    </nav>
+  </div>
+
+</ng-container>

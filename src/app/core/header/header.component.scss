@@ -1,0 +1,68 @@
+@import '../../../assets/material-theme';
+@import '../../../assets/material-shadows.scss';
+@import "../../../assets/sass-vars";
+
+.active {
+  border: 0.5px solid white;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.sign-out-icon {
+  font-size: 30px;
+  height: 30px;
+  width: 30px;
+  @extend %mobile-show;
+}
+
+.sign-out-text {
+  @extend %mobile-hide;
+}
+
+.nav-btn {
+  @extend %mobile-hide;
+}
+
+.toolbar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  width: 100vw;
+  z-index: 8;
+  background-color: mat-color($app-primary);
+  border-radius: 2px;
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  @extend %md-shadow-2dp;
+}
+
+.toolbar-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: $toolbar-height;
+  color: white;
+  padding: 0 24px;
+  @extend %max-window-width;
+}
+
+.mobile-nav {
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  top: $toolbar-height;
+  width: 100%;
+  background-color: white;
+  z-index: 4;
+  border-radius: 2px;
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  @extend %md-shadow-2dp;
+  @extend %mobile-show;
+}

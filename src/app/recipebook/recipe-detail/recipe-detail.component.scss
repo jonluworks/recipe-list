@@ -1,0 +1,185 @@
+@import "../../../assets/sass-vars";
+@import "../../../assets/sass-mixins";
+@import "../../../assets/material-shadows";
+@import "../../../assets/basic-typography";
+@import "../../../assets/material-theme";
+
+$card-image-aspect: 1.777;
+%card-width {
+  @include breakpoint(1col) {
+    width: 100%;
+  }
+  @include breakpoint(2col) {
+    width: 75%;
+  }
+  @include breakpoint(3col) {
+    width: 50%;
+  }
+  @include breakpoint(4col) {
+    width: 35%;
+  }
+}
+
+// container that holds everything
+.recipe-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @include breakpoint(mobile) {
+    padding: 0;
+  }
+  @include breakpoint(notmobile) {
+    padding: 24px;
+  }
+}
+
+// the card itself
+.recipe-detail-card {
+  @extend %card-width;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  transition: all 150ms ease-in-out;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+// holds the image and a few buttons
+.recipe-image-card {
+  position: relative;
+  width: 100%;
+
+  .recipe-btn-container {
+    position: absolute;
+    width: 100%;
+    top: 5px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    .edit-btn {
+      font-size: 35px;
+      width: 35px;
+      height: 35px;
+    }
+    .back-btn {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+    }
+    md-icon {
+      cursor: pointer;
+      margin: 0 10px;
+      font-weight: 100;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, .6);
+      color: white
+    }
+  }
+
+  .card-image {
+    position: relative;
+    width: 100%;
+    @include aspect-ratio($card-image-aspect);
+    background-size: cover;
+    background-position: center center;
+    @extend %md-shadow-2dp;
+  }
+}
+
+// all of the extra information
+.card-detail {
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  background-color: white;
+  transition: all .2s ease-in-out;
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 100;
+    margin: 0;
+    padding-bottom: 16px;
+  }
+
+  .card-subtitle {
+    color: gray;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .recipe-time-container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding-top: 10px;
+
+    .time-block {
+      padding: 10px 24px 5px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .left {
+      padding-left: 12px;
+    }
+    .center {
+      border-left: 1px solid grey;
+      border-right: 1px solid grey;
+    }
+  }
+}
+
+// contains the favorite heart fab
+.fab-container {
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  top: -28px;
+  @media screen and (max-width: 767px){
+    right: 16px;
+  }
+  @media screen and (min-width: 768px){
+    right: 24px;
+  }
+  border-radius: 28px;
+  overflow: hidden;
+  z-index: 3;
+  @extend %md-shadow-3dp;
+
+  .card-fav-fab-red {
+    color: #FF1744;
+  }
+  .card-fav-fab-white {
+    color: white;
+  }
+}
+
+// styles having to do with the ingredients and directions
+
+.tab-contents {
+  padding-top: 15px;
+  overflow: hidden;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  li {
+    display: flex;
+    padding: 10px 0 10px 10px;
+    font-size: 13px;
+    font-weight: 100;
+    flex-direction: row;
+    align-items: center;
+
+
+    md-icon {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+  }
+}

@@ -1,0 +1,110 @@
+@import "../../assets/material-shadows";
+@import "../../assets/sass-vars";
+
+.auth-login {
+  min-width: 250px;
+  max-width: 350px;
+  margin-top: 10px;
+}
+
+.auth-card {
+  background: white;
+  margin: auto;
+  border-radius: 2px;
+  @extend %md-shadow-12dp;
+  padding: 24px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  color: black;
+}
+
+.info {
+  text-align: center;
+  color: grey;
+}
+
+.splash-card {
+  position: absolute;
+  top: $toolbar-height;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @media screen and (max-width: 480px) {
+    background:
+      linear-gradient(
+          rgba(19, 27, 35, 0.55),
+          rgba(19, 27, 35, 0.55)
+      ),
+      url(https://jonlu.info/img/recipe-helper/splash/splash_le4wef_c_scale,w_480.jpg);
+    background-size: cover;
+  }
+  @media screen and (min-width: 481px) and (max-width: 783px) {
+    background:
+      linear-gradient(
+          rgba(19, 27, 35, 0.55),
+          rgba(19, 27, 35, 0.55)
+      ),
+      url(https://jonlu.info/img/recipe-helper/splash/splash_le4wef_c_scale,w_783.jpg);
+    background-size: cover;
+  }
+  @media screen and (min-width: 784px) and (max-width: 1027px) {
+    background:
+      linear-gradient(
+          rgba(19, 27, 35, 0.55),
+          rgba(19, 27, 35, 0.55)
+      ),
+      url(https://jonlu.info/img/recipe-helper/splash/splash_le4wef_c_scale,w_1027.jpg);
+    background-size: cover;
+  }
+  @media screen and (min-width: 1028px) and (max-width: 1235px) {
+    background:
+      linear-gradient(
+          rgba(19, 27, 35, 0.55),
+          rgba(19, 27, 35, 0.55)
+      ),
+      url(https://jonlu.info/img/recipe-helper/splash/splash_le4wef_c_scale,w_1235.jpg);
+    background-size: cover;
+  }
+  @media screen and (min-width: 1236px) and (max-width: 1623px) {
+    background:
+      linear-gradient(
+          rgba(19, 27, 35, 0.55),
+          rgba(19, 27, 35, 0.55)
+      ),
+      url(https://jonlu.info/img/recipe-helper/splash/splash_le4wef_c_scale,w_1623.jpg);
+    background-size: cover;
+  }
+  @media screen and (min-width: 1624px) {
+    background:
+      linear-gradient(
+          rgba(19, 27, 35, 0.55),
+          rgba(19, 27, 35, 0.55)
+      ),
+      url(https://jonlu.info/img/recipe-helper/splash/splash_le4wef_c_scale,w_1920.jpg);
+    background-size: cover;
+  }
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.forgot-password {
+  color: red;
+}
+
+md-input-container {
+  margin-bottom: 40px;
+}
+
+button {
+  margin-bottom: 5px;
+}
